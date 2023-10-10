@@ -1,7 +1,12 @@
-Python, Automação
-Python, Análise de dados
-Python, IA
-Javascript, Backend
-Javascript, Mobile
-Javascript, Frontend
-Ruby, Backend
+language,category
+Python,Automação
+Python,Análise de dados
+Python,IA
+JavaScript,Backend
+JavaScript,Mobile
+JavaScript,FrontEnd
+Ruby,Backend
+python,automação
+java,aplicativos desktop
+c++,jogos
+sql,banco de dados

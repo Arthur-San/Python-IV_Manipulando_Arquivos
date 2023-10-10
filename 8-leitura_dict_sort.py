@@ -1,6 +1,6 @@
 courses = []
 
-with open("courses.csv", "r", encoding="utf-8") as file:
+with open("dados/courses.csv", "r", encoding="utf-8") as file:
     for line in file:
         linguagem, categoria = line.strip().split(",")
         course = {}
