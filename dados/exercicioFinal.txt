@@ -1,6 +1,13 @@
-nome/numero
 
-arthur/2390290392
-diana/923483924923
-testef/95515451
-agata/324904
+Nome: arthur 
+Endereço: rua a 
+Telefone: 2309823
+Nome: arthur 
+Endereço: rua a 
+Telefone: 2903823
+Nome: fernana 
+Endereço: rua b 
+Telefone: 3924834
+Nome: diana 
+Endereço: rua c 
+Telefone: 30943904

@@ -7,13 +7,13 @@
 #     2. Um método para listar contatos.
 #     3. Um método para remover contatos.
 # 2. Criar um arquivo principal para a aplicação que importar o módulo de agenda e chamar cada um dos métodos desenvolvidos de acordo com a opção escolhida.
-from Agenda import add_contato, list_contatos,limpar_console
+from Agenda import add_contato, list_contatos,limpar_console,remove_contato
 
 choice = 0
 
 class Main:
     while choice != 5:
-        print('------AGENDA------')
+        print('\n------AGENDA------')
         print('1 - Adicionar contato')
         print('2 - Listar contatos')
         print('3 - Remover contato')
@@ -23,12 +23,12 @@ class Main:
         choice = int(input('O que deseja fazer?\n->'))
 
         if choice == 1:
-            nome = input('Digite o nome: ')
-            numero = int(input('Digite o numero: '))
-            contato = add_contato(nome, numero)
+            contato = add_contato()
         elif choice == 2:
                 list_contatos()
-        #elif choice == 3:
+        elif choice == 3:
+            remove_contato()
+
         elif choice == 4:
             limpar_console()
             

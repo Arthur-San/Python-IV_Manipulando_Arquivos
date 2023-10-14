@@ -3,21 +3,38 @@
 #     2. Um método para listar contatos.
 #     3. Um método para remover contatos.
 
-def add_contato(nome, numero):
+import os
+
+def add_contato():
+    name = input('Informe o nome: ')
+    adress = input('Informe o endereço: ')
+    phone = input('Informe o fone: ')
+
+    contact = f"Nome: {name} \nEndereço: {adress} \nTelefone: {phone}"
+
     with open("dados/exercicioFinal.txt", "a", encoding="utf-8") as file:
-        file.write(f"\n{nome}/{numero}")
+        file.write(contact)
 
 
 def list_contatos():
-    with open("dados/exercicioFinal.txt", "r", encoding="utf-8") as file:
-        for line in file:
-            print(line.rstrip())
+    if not os.path.exists("dados/exercicioFinal.txt"):
+        print('A lista está vazia')
+        return
+    else:
+        with open("dados/exercicioFinal.txt", "r", encoding="utf-8") as file:
+            contacts = file.read()
+    print("-------LISTA DE CONTATOS-------")
+    print(f"{contacts}\n")
 
-def remove_contato(nome, numero):
-    with open("dados/exercicioFinal.txt", "r", encoding="utf-8") as file:
-        for line in file:
-            if line == nome and line == numero:
-                print('achei')
+
+def remove_contato():
+    if not os.path.exists("dados/exercicioFinal.txt"):
+        print('A lista está vazia')
+        return
+    else:
+        with open("dados/exercicioFinal.txt", "w", encoding="utf-8") as file:
+            file.write("")
+        
 
 def limpar_console():
     import os
