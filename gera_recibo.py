@@ -1,39 +1,62 @@
 from fpdf import FPDF
-from num2words import num2words
 from datetime import date
+import tkinter as tk
 
-# 1 - Variáveis
-cliente = input("informe o nome do cliente: ")
-consulta = input('informe o tipo de consulta: ')
-vlr = input('informe o valor da consulta: ')
-vlr_msg = f"{vlr} reais"
-vlr_extenso = num2words(float(vlr), lang='pt-br')
-vlr_extenso_msg = f"{vlr_extenso} reais"
+def gerar_recibo():
+    cliente_nome = cliente_entry.get()
+    consulta_tipo = consulta_entry.get()
+    valor = float(vlr_entry.get())
+    
+    vlr_msg = f"{valor} reais"
+    # Calcular valor por extenso aqui, se necessário
+    
+    data = date.today()
+    dia = data.day
+    mes = data.month
+    ano = data.year
 
-data = date.today()
-dia = data.day
-mes = data.month
-ano = data.year
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", "", 20)
+    pdf.image("dados/rec.jpg", x=0, y=0)
+    pdf.text(162, 45, vlr_msg)
+    pdf.text(80, 86, cliente_nome)
+    # Incluir o valor por extenso se necessário
+    pdf.text(80, 135, consulta_tipo)
 
+    pdf.set_text_color(255, 255, 255)
+    pdf.text(30, 193, str(dia))
+    pdf.text(50, 193, str(mes))
+    pdf.text(70, 193, str(ano))
 
-# 2- layout do recibo
+    nome_arquivo = f"{cliente_nome.strip()}_{dia}_{mes}_{ano}"
 
-pdf = FPDF()
-pdf.add_page()
-pdf.set_font("Arial", "", 20)
-pdf.image("dados/rec.jpg", x=0, y=0)
-pdf.text(162, 45, vlr_msg)
-pdf.text(80, 86, cliente)
-pdf.text(80, 108, vlr_extenso_msg)
-pdf.text(80, 135, consulta)
+    pdf.output(f"{nome_arquivo}.pdf")
+    print("Recibo gerado!")
 
-pdf.set_text_color(255,255,255)
+window = tk.Tk()
+window.geometry("400x250")
+window.title('Gerador de Recibos')
 
-pdf.text(30, 193, str(dia))
-pdf.text(50, 193, str(mes))
-pdf.text(70, 193, str(ano))
+frame = tk.Frame(window)
+frame.pack(padx=10, pady=10, fill='x', expand=True)
 
-nome_arquivo = f"{cliente.strip()}_{dia}_{mes}_{ano}"
+cliente_label = tk.Label(frame, text='Informe o nome do cliente: ')
+cliente_label.pack(fill='x', expand=True)
+cliente_entry = tk.Entry(frame)
+cliente_entry.pack(fill='x', expand=True)
 
-pdf.output(f"{nome_arquivo}.pdf")
-print("recibo gerado!")
+consulta_label = tk.Label(frame, text='Informe o tipo de consulta: ')
+consulta_label.pack(fill='x', expand=True)
+consulta_entry = tk.Entry(frame)
+consulta_entry.pack(fill='x', expand=True)
+
+vlr_label = tk.Label(frame, text='Informe o valor da consulta: ')
+vlr_label.pack(fill='x', expand=True)
+vlr_entry = tk.Entry(frame)
+vlr_entry.pack(fill='x', expand=True)
+
+gerar_button = tk.Button(frame, text="Gerar Recibo", command=gerar_recibo)
+gerar_button.pack()
+
+window.mainloop()
